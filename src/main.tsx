@@ -1,9 +1,11 @@
 import type {SecondParameter} from 'more-types'
-import type {ComponentType, PropsWithChildren} from 'react'
+import type {ComponentType, PropsWithChildren, ReactElement} from 'react'
 import type {Arrayable} from 'type-fest'
 
 import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
+
+type Target = ComponentType | ReactElement
 
 type Options = {
   id?: string
@@ -13,9 +15,12 @@ type Options = {
   wrapper?: Arrayable<ComponentType<PropsWithChildren>>
 }
 
-const mountRoot = async (Component: ComponentType, options?: Options) => {
+const ensureElement = (input: Target) => {
+  return typeof input === 'function' ? <input /> : input
+}
+const mountRoot = (Component: Target, options?: Options) => {
   const type = options?.type || 'div'
-  let app = <Component/>
+  let app = ensureElement(Component)
   const wrappers = Array.isArray(options?.wrapper) ? options.wrapper : [options?.wrapper]
   if (options?.strict) {
     wrappers.push(StrictMode)
