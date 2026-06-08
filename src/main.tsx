@@ -1,11 +1,15 @@
 import type {SecondParameter} from 'more-types'
-import type {ComponentType, PropsWithChildren, ReactElement} from 'react'
+import type {ComponentType, ReactElement, ReactNode} from 'react'
 import type {Arrayable} from 'type-fest'
 
 import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
 
 type Target = ComponentType | ReactElement
+
+type PropsWithChildren = {
+  children: ReactNode
+}
 
 type Options = {
   id?: string
