@@ -1,6 +1,6 @@
 import {expect, test} from 'bun:test'
 
-const {default: mountRoot} = await import('#src/main.ts')
+const {default: mountRoot} = await import('#src/main.tsx')
 
 test('should run', () => {
   const result = mountRoot()
