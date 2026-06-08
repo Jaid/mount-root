@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Jaid/mount-root.git"
+    "url": "git+https://github.com/Jaid/mount-root.git"
   },
   "scripts": {
     "test": "bun test --max-concurrency 1"
