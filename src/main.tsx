@@ -2,19 +2,24 @@ import type {SecondParameter} from 'more-types'
 import type {ComponentType, PropsWithChildren} from 'react'
 import type {Arrayable} from 'type-fest'
 
+import {StrictMode} from 'react'
 import {createRoot} from 'react-dom/client'
 
 type Options = {
   id?: string
   rootOptions?: SecondParameter<typeof createRoot>
+  strict?: boolean
   type?: string
   wrapper?: Arrayable<ComponentType<PropsWithChildren>>
 }
 
-const mountRoot = (Component: ComponentType, options?: Options) => {
+const mountRoot = async (Component: ComponentType, options?: Options) => {
   const type = options?.type || 'div'
   let app = <Component/>
   const wrappers = Array.isArray(options?.wrapper) ? options.wrapper : [options?.wrapper]
+  if (options?.strict) {
+    wrappers.push(StrictMode)
+  }
   for (const Wrapper of wrappers) {
     if (!Wrapper) {
       continue
@@ -37,6 +42,7 @@ const mountRoot = (Component: ComponentType, options?: Options) => {
   }
   const root = createRoot(rootNode, options?.rootOptions)
   root.render(app)
+  return root
 }
 
 export default mountRoot
