@@ -15,8 +15,8 @@ type Options = {
   wrapper?: Arrayable<ComponentType<PropsWithChildren>>
 }
 
-const ensureElement = (input: Target) => {
-  return typeof input === 'function' ? <input /> : input
+const ensureElement = (Input: Target) => {
+  return typeof Input === 'function' ? <Input /> : Input
 }
 const mountRoot = (Component: Target, options?: Options) => {
   const type = options?.type || 'div'
