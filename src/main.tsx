@@ -27,9 +27,9 @@ const mountRoot = (Component: Target, options?: Options) => {
   let app = ensureElement(Component)
   const wrappers = Array.isArray(options?.wrapper) ? options.wrapper : [options?.wrapper]
   if (options?.strict) {
-    wrappers.push(StrictMode)
+    wrappers.unshift(StrictMode)
   }
-  for (const Wrapper of wrappers) {
+  for (const Wrapper of wrappers.toReversed()) {
     if (!Wrapper) {
       continue
     }
