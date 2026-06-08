@@ -1,6 +1,6 @@
 {
   "name": "mount-root",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "type": "module",
   "funding": "https://github.com/sponsors/Jaid",
   "license": "MIT",
@@ -16,6 +16,9 @@
   "imports": {
     "#src/*": "./src/*",
     "#root/*": "./*"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production build_lib"
   },
   "peerDependencies": {
     "react": "^19",
